@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advertisement Detection</title>
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+<body>
+    <nav class="navbar">
+        <a href="#">main</a>
+        <div class="right-links">
+            <a href="#">report a problem</a>
+            <a href="#">log in</a>
+        </div>
+    </nav>
+
+    <div class="container youtube">
+        <div class="video-container">
+            <iframe id="youtubePlayer" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+        <form id="urlForm" class="url-form">
+            <input type="text" id="youtubeURL" placeholder="Enter YouTube URL" required disabled>
+            <button type="submit">Enter</button>
+        </form>
+    </div>
+
+    <div class="container result-section">
+        <div class="tabs">
+            <button class="tablink" onclick="openTab(event, 'Logo')">Logo</button>
+            <button class="tablink" onclick="openTab(event, 'Result')">Result</button>
+        </div>
+        <div id="Logo" class="tabcontent">
+            <form id="brandForm" class="brand-form">
+                <input type="text" id="brandName" placeholder="Enter Brand Name" required>
+                <button type="submit">Search</button>
+            </form>
+            <div id="defaultLogos" class="default-logos">
+                <!-- Logos will be added here dynamically -->
+            </div>                   
+            <div class="image-container" id="imageContainer">
+                <!-- Images will be displayed here -->
+            </div>
+        </div>
+        <div id="Result" class="tabcontent">
+            <h2>Result</h2>
+            <div id="resultContent">Result content goes here.</div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>

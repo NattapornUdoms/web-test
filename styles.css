@@ -1,0 +1,216 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #d3e0ea;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    background-color: #a1cae2;
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: black;
+    font-size: 1.2rem;
+    margin: 0 1rem;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
+}
+
+.right-links {
+    margin-left: auto; /* ดันกลุ่มลิงก์นี้ไปทางขวา */
+    display: flex;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5rem;  /* Adjusted to account for the fixed navbar */
+}
+
+.youtube{
+    position: absolute;
+    top: 70px;
+    left: 20px;
+    max-width: 700px;
+    width: 100%;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.url-form {
+    position: absolute;
+    top: 600px;
+    left: 60px;
+    display: flex; /* ใช้ flexbox เพื่อให้ item อยู่ในบรรทัดเดียวกัน */
+    width: 150%; /* เพิ่มความกว้างให้กับ form */
+}
+
+input[type="text"] {
+    width: 70%; /* Adjusted to fit better within the larger container */
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 140%;
+    height: 140%;
+    border: 0;
+}
+
+.brand-search {
+    position: absolute;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.brand-form {
+    display: flex; /* ใช้ flexbox เพื่อให้ item อยู่ในบรรทัดเดียวกัน */
+    justify-content: center; /* จัดให้ content อยู่ตรงกลาง */
+    width: 350px; /* เพิ่มความกว้างให้กับ form */
+}
+
+.image-container {
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px;
+
+}
+
+.image-container img {
+    position: static;
+    max-width: 140px;
+    height: auto;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+
+.result-section {
+    position: absolute;
+    top: 20px;
+    right: 50px;
+    width: 400px;
+    height: 650px;
+    background-color: #f9f9f9;
+    padding: 0;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.tabs {
+    display: flex;
+    width: 100%;
+}
+
+.tablink {
+    flex: 1;
+    padding: 10px;
+    background-color: #333333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+}
+
+.tabcontent {
+    display: none;
+    padding: 20px;
+    text-align: center;
+}
+
+#Logo {
+    display: block; /* Display the Logo tab content by default */
+}
+
+h1, h2 {
+    margin-bottom: 20px;
+}
+
+.default-logos {
+    display: flex;
+    flex-wrap: wrap; /* Enable wrapping of flex items */
+    overflow-y: auto; /* Enable vertical scroll */
+    height: 500px; /* Set the height of the container */
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.default-logos img {
+    position: static;
+    max-width: 140px;
+    height: auto;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.brand-image {
+    position: relative;
+    cursor: pointer;
+}
+
+.brand-image.selected {
+    border: 2px solid #28a745;
+}
+
+.brand-image .number {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #28a745;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+}
