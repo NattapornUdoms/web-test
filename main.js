@@ -1,4 +1,4 @@
-// Hi there
+// Hi there Ricky
 // Event listener for brand form submission
 document.getElementById('brandForm').addEventListener('submit', function(event) {
     event.preventDefault();
