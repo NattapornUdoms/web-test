@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 document.getElementById('urlForm').addEventListener('submit', function(event) {
     event.preventDefault();
     const imageSelected = document.querySelectorAll('.image-container img.selected, .brand-image.selected');
@@ -93,6 +94,9 @@ function extractVideoID(url) {
     return match ? match[1] : null;
 }
 
+=======
+// Hi there Ricky
+>>>>>>> 14643ecc0f1eaf8cbc6fdc0d5fd4f25bb2d08c51
 // Event listener for brand form submission
 document.getElementById('brandForm').addEventListener('submit', function(event) {
     event.preventDefault();
