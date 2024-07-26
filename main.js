@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 document.getElementById('urlForm').addEventListener('submit', function(event) {
     event.preventDefault();
     const imageSelected = document.querySelectorAll('.image-container img.selected, .brand-image.selected');
@@ -94,9 +93,6 @@ function extractVideoID(url) {
     return match ? match[1] : null;
 }
 
-=======
-// Hi there Ricky
->>>>>>> 14643ecc0f1eaf8cbc6fdc0d5fd4f25bb2d08c51
 // Event listener for brand form submission
 document.getElementById('brandForm').addEventListener('submit', function(event) {
     event.preventDefault();
@@ -131,20 +127,23 @@ function fetchDefaultLogos() {
 // Function to handle image click
 function handleImageClick() {
     const selectedImages = document.querySelectorAll('.brand-image.selected');
+    
     if (this.classList.contains('selected')) {
         this.classList.remove('selected');
-        updateImageNumbers();
+    } else if (selectedImages.length < 3) {
+        this.classList.add('selected');
     } else {
-        if (selectedImages.length < 3) {
-            this.classList.add('selected');
-            updateImageNumbers();
-        } else {
-            alert('You can select up to 3 images only.');
-        }
+        alert('You can select a maximum of 3 brands.');
     }
+
+    updateImageNumbers();
+
+    // Enable or disable the YouTube URL input based on the number of selected images
+    const updatedSelectedImages = document.querySelectorAll('.brand-image.selected');
     const youtubeInput = document.getElementById('youtubeURL');
-    youtubeInput.disabled = selectedImages.length === 0;
+    youtubeInput.disabled = updatedSelectedImages.length === 0;
 }
+
 
 // Function to update image numbers
 function updateImageNumbers() {
