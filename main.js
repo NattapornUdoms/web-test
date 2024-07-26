@@ -1,4 +1,98 @@
-// Hi there
+document.getElementById('urlForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const imageSelected = document.querySelectorAll('.image-container img.selected, .brand-image.selected');
+    if (imageSelected.length === 0) {
+        alert('Please select a brand image before entering a YouTube URL.');
+        return;
+    }
+
+    const url = document.getElementById('youtubeURL').value;
+    const videoId = extractVideoID(url);
+    if (videoId) {
+        const iframe = document.getElementById('youtubePlayer');
+        iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`; // Add autoplay parameter
+        openTabByName('Result');  // Open the Result tab
+
+        // Clear previous results and create new pages
+        clearPreviousResults();
+        createResultPages(imageSelected);
+    } else {
+        alert('Invalid YouTube URL');
+    }
+});
+
+function clearPreviousResults() {
+    const resultContent = document.getElementById('resultContent');
+    const paginationControls = document.getElementById('paginationControls');
+    resultContent.innerHTML = '';
+    paginationControls.innerHTML = '';
+
+    // Remove selected class from all brand images
+    document.querySelectorAll('.brand-image').forEach(img => {
+        img.classList.remove('selected');
+    });
+
+    // Clear number labels on images
+    document.querySelectorAll('.number').forEach(number => number.remove());
+}
+
+
+
+function createResultPages(images) {
+    const resultContent = document.getElementById('resultContent');
+    const paginationControls = document.getElementById('paginationControls');
+
+    // Clear previous content
+    resultContent.innerHTML = '';
+    paginationControls.innerHTML = '';
+
+    const itemsPerPage = 1; // Number of brands to display per page
+    const totalPages = Math.ceil(images.length / itemsPerPage);
+
+    // Create pages
+    for (let i = 0; i < totalPages; i++) {
+        const page = document.createElement('div');
+        page.className = 'result-page';
+        page.style.display = i === 0 ? 'block' : 'none'; // Show the first page by default
+
+        const start = i * itemsPerPage;
+        const end = start + itemsPerPage;
+        const pageImages = Array.from(images).slice(start, end);
+
+        pageImages.forEach(img => {
+            const clone = img.cloneNode(true);
+            clone.classList.add('result-image');  // Add class to ensure consistent sizing
+            page.appendChild(clone);
+        });
+
+        resultContent.appendChild(page);
+    }
+
+    // Create pagination controls
+    for (let i = 0; i < totalPages; i++) {
+        const button = document.createElement('button');
+        button.textContent = i + 1;
+        button.classList.add('pagination-button');
+        if (i === 0) button.classList.add('active');
+
+        button.addEventListener('click', () => {
+            document.querySelectorAll('.result-page').forEach((page, index) => {
+                page.style.display = index === i ? 'block' : 'none';
+            });
+            document.querySelectorAll('.pagination-button').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+        });
+
+        paginationControls.appendChild(button);
+    }
+}
+
+function extractVideoID(url) {
+    const regex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+    const match = url.match(regex);
+    return match ? match[1] : null;
+}
+
 // Event listener for brand form submission
 document.getElementById('brandForm').addEventListener('submit', function(event) {
     event.preventDefault();
@@ -88,15 +182,15 @@ function fetchImages(brandName) {
                 if (squareImage) {
                     const imgElement = document.createElement('img');
                     imgElement.src = squareImage.link;
-                    imgElement.alt = `${brandName} logo square`;
+                    imgElement.alt = `${brandName} logo`;
                     imgElement.className = 'brand-image';
                     imgElement.addEventListener('click', handleImageClick);
                     imageContainer.appendChild(imgElement);
                 } else {
-                    imageContainer.innerHTML = '<p>No square images found for this brand.</p>';
+                    imageContainer.innerHTML = '<p>No square images found for the given brand.</p>';
                 }
             } else {
-                imageContainer.innerHTML = '<p>No images found for this brand.</p>';
+                imageContainer.innerHTML = '<p>No images found for the given brand.</p>';
             }
         })
         .catch(error => {
